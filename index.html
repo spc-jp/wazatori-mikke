@@ -75,7 +75,7 @@
             border-radius: 50%; z-index: 0; pointer-events: none;
         }
         .bg-orb-2 {
-            position: absolute; top: 40%; right: -30%; width: 350px; height: 350px;
+            position: absolute top: 40%; right: -30%; width: 350px; height: 350px;
             background: radial-gradient(circle, rgba(15, 23, 42, 0.05) 0%, rgba(255,255,255,0) 70%);
             border-radius: 50%; z-index: 0; pointer-events: none;
         }
@@ -99,7 +99,7 @@
 
         <!-- ヘッダー -->
         <header class="glass-header px-5 py-4 flex items-center justify-between sticky top-0 z-30">
-            <div class="flex items-center">
+            <div class="flex items-center cursor-pointer active-scale" onclick="scrollToTop()">
                 <div class="w-9 h-9 bg-brand-main dark:bg-brand-surface rounded-lg flex items-center justify-center mr-3 shadow-md border border-gray-700/50">
                     <i class="ph-fill ph-factory text-xl text-brand-gold"></i>
                 </div>
@@ -412,32 +412,18 @@
                     </div>
                 </div>
 
-                <!-- 使い方手順 -->
+                <!-- 使い方手順 (シンプルに修正) -->
                 <div>
                     <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-book-open text-lg"></i>How to use</h2>
-                    <div class="bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm">
-                        <ul class="text-[13px] text-gray-700 dark:text-gray-300 leading-relaxed space-y-3 font-medium">
-                            <li class="flex items-start gap-2">
-                                <span class="font-en text-brand-gold font-bold text-[14px]">1.</span> 
-                                <span>現場の様子や製品の写真を撮影、またはスマホから選択します。</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="font-en text-brand-gold font-bold text-[14px]">2.</span> 
-                                <span>発信したいSNS（X、Instagram、Facebook）を選びます。</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="font-en text-brand-gold font-bold text-[14px]">3.</span> 
-                                <span>今日の作業内容や募集職種をリストから選ぶか、自由に入力します。</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="font-en text-brand-gold font-bold text-[14px]">4.</span> 
-                                <span>アピールしたい強みや求める人物像をチェックします。</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="font-en text-brand-gold font-bold text-[14px]">5.</span> 
-                                <span>「文章を自動生成」ボタンを押し、完成した文章をコピーして各SNSアプリに貼り付けて投稿してください。</span>
-                            </li>
-                        </ul>
+                    <div class="bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm flex flex-col gap-3">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
+                            <p class="text-[12px] font-bold text-brand-gold mb-1 flex items-center gap-1.5"><i class="ph-fill ph-check-circle"></i>メイン画面での操作</p>
+                            <p class="text-[12px] text-gray-700 dark:text-gray-300 leading-relaxed font-medium">写真と項目を選んで「文章を自動生成」を押すだけで、SNS向けの投稿文が完成します。</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
+                            <p class="text-[12px] font-bold text-brand-gold mb-1 flex items-center gap-1.5"><i class="ph-fill ph-gear"></i>設定画面について（この画面）</p>
+                            <p class="text-[12px] text-gray-700 dark:text-gray-300 leading-relaxed font-medium">投稿文の末尾に自動で追加される「自社URL」や「連絡先メールアドレス」をあらかじめ登録しておくことができます。</p>
+                        </div>
                     </div>
                 </div>
 
@@ -478,6 +464,17 @@
 
     <!-- ================= JavaScript ロジック ================= -->
     <script>
+        // トップにスムーズにスクロールして戻る機能
+        function scrollToTop() {
+            const container = document.querySelector('.overflow-y-auto');
+            if (container) {
+                container.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
         function handlePhotoSelect(input, labelId) {
             const label = document.getElementById(labelId);
             if (input.files && input.files[0]) {
