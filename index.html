@@ -399,7 +399,49 @@
                 <div class="w-8"></div>
             </header>
             
-            <div class="p-6 space-y-8 flex-1 overflow-y-auto">
+            <div class="p-6 space-y-8 flex-1 overflow-y-auto pb-12">
+                
+                <!-- アプリの目的 -->
+                <div>
+                    <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-info text-lg"></i>About</h2>
+                    <div class="bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm">
+                        <p class="text-[13px] text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+                            このアプリは、森田製作所が誇る「確かな技術」と「ものづくりの魅力」を、忙しい業務の合間でも簡単に発信できるようサポートする専用ツールです。<br><br>
+                            日々の継続的な発信を通じて、新しいお客様との出会いや、共に働く仲間とのご縁を繋ぐことを目的としています。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 使い方手順 -->
+                <div>
+                    <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-book-open text-lg"></i>How to use</h2>
+                    <div class="bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm">
+                        <ul class="text-[13px] text-gray-700 dark:text-gray-300 leading-relaxed space-y-3 font-medium">
+                            <li class="flex items-start gap-2">
+                                <span class="font-en text-brand-gold font-bold text-[14px]">1.</span> 
+                                <span>現場の様子や製品の写真を撮影、またはスマホから選択します。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-en text-brand-gold font-bold text-[14px]">2.</span> 
+                                <span>発信したいSNS（X、Instagram、Facebook）を選びます。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-en text-brand-gold font-bold text-[14px]">3.</span> 
+                                <span>今日の作業内容や募集職種をリストから選ぶか、自由に入力します。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-en text-brand-gold font-bold text-[14px]">4.</span> 
+                                <span>アピールしたい強みや求める人物像をチェックします。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-en text-brand-gold font-bold text-[14px]">5.</span> 
+                                <span>「文章を自動生成」ボタンを押し、完成した文章をコピーして各SNSアプリに貼り付けて投稿してください。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- テーマ設定 -->
                 <div>
                     <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-palette text-lg"></i>Theme</h2>
                     <div class="flex bg-white dark:bg-brand-surface p-1 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
@@ -418,11 +460,13 @@
                     </div>
                 </div>
 
+                <!-- URL設定 -->
                 <div>
                     <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-link text-lg"></i>Website URL</h2>
                     <input type="url" id="setting-url" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 text-[14px] font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:border-brand-gold transition-all shadow-sm">
                 </div>
 
+                <!-- メールアドレス設定 -->
                 <div>
                     <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-envelope-simple text-lg"></i>Contact Email</h2>
                     <input type="email" id="setting-email" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 text-[14px] font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:border-brand-gold transition-all shadow-sm">
