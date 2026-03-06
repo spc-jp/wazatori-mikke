@@ -3,36 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>技採みっけ</title>
+    <title>技採みっけ Pro</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- Google Fonts (Noto Sans JP) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Noto Sans JP & Montserrat) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Noto+Sans+JP:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
-            darkMode: 'class', // ダークモードを有効化
+            darkMode: 'class', 
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['"Noto Sans JP"', 'sans-serif'],
+                        en: ['"Montserrat"', 'sans-serif'],
                     },
                     colors: {
                         ios: {
-                            bg: '#F8F9FB',
+                            bg: '#F5F5F7',
                             card: '#FFFFFF',
-                            text: '#1C1C1E',
+                            text: '#1D1D1F',
                         },
                         brand: {
-                            main: '#1a2e4a', /* ネイビー */
-                            light: '#c0c8d0' /* シルバー */
+                            main: '#0F172A', /* ミッドナイトブルー (Slate 900) */
+                            gold: '#C5A059', /* シャンパンゴールド */
+                            goldLight: '#E8D5A5',
+                            surface: '#1E293B',
                         }
                     },
                     boxShadow: {
-                        'premium': '0 10px 30px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,1)',
-                        'floating': '0 20px 40px -10px rgba(26, 46, 74, 0.3)',
+                        'elegant': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'gold-glow': '0 10px 30px -10px rgba(197, 160, 89, 0.4)',
+                        'inner-light': 'inset 0 1px 0 rgba(255,255,255,0.6)',
                     }
                 }
             }
@@ -47,55 +51,66 @@
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .fade-in { animation: slideUpFade 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .fade-in { animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        .active-scale { transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; }
-        .active-scale:active { transform: scale(0.96); }
+        .active-scale { transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+        .active-scale:active { transform: scale(0.97); }
 
+        /* プレミアムなガラス効果 */
         .glass-header {
-            background-color: rgba(248, 249, 251, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        /* ダークモード時のヘッダー */
         html.dark .glass-header {
-            background-color: rgba(31, 41, 55, 0.85);
+            background-color: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
+        /* 洗練された背景オーブ（ゴールドとプラチナ） */
         .bg-orb-1 {
-            position: absolute; top: -5%; left: -20%; width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(26,46,74,0.1) 0%, rgba(255,255,255,0) 70%);
+            position: absolute; top: -10%; left: -20%; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, rgba(255,255,255,0) 70%);
             border-radius: 50%; z-index: 0; pointer-events: none;
         }
         .bg-orb-2 {
-            position: absolute; top: 30%; right: -20%; width: 250px; height: 250px;
-            background: radial-gradient(circle, rgba(192,200,208,0.3) 0%, rgba(255,255,255,0) 70%);
+            position: absolute; top: 40%; right: -30%; width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(15, 23, 42, 0.05) 0%, rgba(255,255,255,0) 70%);
             border-radius: 50%; z-index: 0; pointer-events: none;
         }
-        /* ダークモード時のオーブ */
-        html.dark .bg-orb-1 { background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(255,255,255,0) 70%); }
-        html.dark .bg-orb-2 { background: radial-gradient(circle, rgba(156,163,175,0.1) 0%, rgba(255,255,255,0) 70%); }
+        html.dark .bg-orb-1 { background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(255,255,255,0) 70%); }
+        html.dark .bg-orb-2 { background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, rgba(255,255,255,0) 70%); }
+
+        /* プレミアムグラデーションテキスト */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #C5A059 0%, #E8D5A5 50%, #C5A059 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
-<body class="bg-gray-200 dark:bg-gray-900 min-h-screen flex items-center justify-center font-sans m-0 md:p-6 text-ios-text dark:text-gray-100 transition-colors duration-300">
+<body class="bg-[#E5E5EA] dark:bg-gray-950 min-h-screen flex items-center justify-center font-sans m-0 md:p-6 text-ios-text dark:text-gray-200 transition-colors duration-500">
 
-    <div class="w-full h-screen md:h-[844px] max-w-[390px] bg-ios-bg dark:bg-gray-900 md:rounded-[3rem] md:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] overflow-x-hidden overflow-y-auto flex flex-col relative md:border-[8px] border-gray-900 ring-1 ring-gray-200 transition-colors duration-300">
+    <div class="w-full h-screen md:h-[844px] max-w-[390px] bg-ios-bg dark:bg-brand-main md:rounded-[2.5rem] md:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-x-hidden overflow-y-auto flex flex-col relative md:border-[6px] border-gray-900 ring-1 ring-gray-300 transition-colors duration-500">
         
         <div class="bg-orb-1"></div>
         <div class="bg-orb-2"></div>
 
         <!-- ヘッダー -->
-        <header class="glass-header px-5 py-4 flex items-center justify-between sticky top-0 z-30 border-b border-white/50 dark:border-gray-700/50">
+        <header class="glass-header px-5 py-4 flex items-center justify-between sticky top-0 z-30">
             <div class="flex items-center">
-                <div class="w-9 h-9 bg-brand-main rounded-xl flex items-center justify-center mr-3 shadow-sm text-white relative overflow-hidden">
-                    <div class="absolute inset-0 bg-white/20 transform -skew-x-12 translate-x-full"></div>
-                    <i class="ph-fill ph-factory text-xl"></i>
+                <div class="w-9 h-9 bg-brand-main dark:bg-brand-surface rounded-lg flex items-center justify-center mr-3 shadow-md border border-gray-700/50">
+                    <i class="ph-fill ph-factory text-xl text-brand-gold"></i>
                 </div>
-                <h1 class="font-extrabold text-[17px] tracking-tight text-gray-900 dark:text-white">技採みっけ</h1>
+                <div>
+                    <h1 class="font-extrabold text-[16px] tracking-wide text-gray-900 dark:text-white leading-tight">技採みっけ</h1>
+                    <span class="font-en text-[10px] tracking-widest text-brand-gold font-bold uppercase">Professional</span>
+                </div>
             </div>
             <!-- 設定ボタン -->
-            <button onclick="openSettings()" class="active-scale w-8 h-8 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-inner border border-gray-100 dark:border-gray-700 relative overflow-hidden text-gray-400 dark:text-gray-300 hover:text-gray-600 dark:hover:text-white">
-                <i class="ph-bold ph-gear text-[18px]"></i>
+            <button onclick="openSettings()" class="active-scale w-9 h-9 bg-white dark:bg-brand-surface rounded-full flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-brand-gold hover:text-gray-800 transition-colors">
+                <i class="ph-bold ph-faders text-[18px]"></i>
             </button>
         </header>
 
@@ -103,67 +118,70 @@
         <main class="flex-1 relative z-10 pb-12" id="main-content">
             
             <!-- 挨拶メッセージエリア -->
-            <div class="px-5 pt-5 pb-1 relative z-10 fade-in">
-                <p id="greeting-message" class="text-[13px] font-bold text-gray-600 dark:text-gray-300 tracking-wide flex items-start gap-2 leading-relaxed bg-white/60 dark:bg-gray-800/60 backdrop-blur-md p-3.5 rounded-[1rem] border border-white dark:border-gray-700 shadow-sm"></p>
+            <div class="px-5 pt-6 pb-2 relative z-10 fade-in">
+                <div class="bg-white/80 dark:bg-brand-surface/80 backdrop-blur-md p-4 rounded-2xl border border-white dark:border-gray-700 shadow-elegant">
+                    <p id="greeting-message" class="text-[13px] font-medium text-gray-700 dark:text-gray-300 tracking-wide flex items-start gap-3 leading-relaxed"></p>
+                </div>
             </div>
 
             <!-- タブナビゲーション -->
-            <div class="p-4 relative z-10 pt-2">
-                <div class="flex bg-gray-200/70 dark:bg-gray-800 p-1.5 rounded-[1.2rem] backdrop-blur-sm shadow-inner">
-                    <button id="tab-strength" class="active-scale flex-1 py-3 text-[14px] font-extrabold flex items-center justify-center rounded-xl transition-all relative text-gray-900 dark:text-gray-100">
-                        <span class="relative z-10 flex items-center gap-1.5"><i class="ph-bold ph-factory text-lg"></i>強み発信</span>
-                        <div id="tab-bg-strength" class="absolute inset-0 bg-white dark:bg-gray-700 rounded-xl shadow-sm z-0"></div>
+            <div class="p-5 relative z-10">
+                <div class="flex bg-gray-200/60 dark:bg-gray-800/60 p-1 rounded-xl backdrop-blur-sm">
+                    <button id="tab-strength" class="active-scale flex-1 py-2.5 text-[13px] font-bold flex items-center justify-center rounded-lg transition-all relative text-gray-900 dark:text-white">
+                        <span class="relative z-10 tracking-wider">強み発信</span>
+                        <div id="tab-bg-strength" class="absolute inset-0 bg-white dark:bg-brand-surface rounded-lg shadow-sm z-0"></div>
                     </button>
-                    <button id="tab-recruit" class="active-scale flex-1 py-3 text-[14px] font-extrabold flex items-center justify-center rounded-xl transition-all relative text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
-                        <span class="relative z-10 flex items-center gap-1.5"><i class="ph-bold ph-users text-lg"></i>採用発信</span>
-                        <div id="tab-bg-recruit" class="absolute inset-0 bg-white dark:bg-gray-700 rounded-xl shadow-sm z-0 hidden-view"></div>
+                    <button id="tab-recruit" class="active-scale flex-1 py-2.5 text-[13px] font-bold flex items-center justify-center rounded-lg transition-all relative text-gray-500 dark:text-gray-400">
+                        <span class="relative z-10 tracking-wider">採用発信</span>
+                        <div id="tab-bg-recruit" class="absolute inset-0 bg-white dark:bg-brand-surface rounded-lg shadow-sm z-0 hidden-view"></div>
                     </button>
                 </div>
             </div>
 
             <div class="px-5">
                 <!-- 【タブ1】 強み発信フォーム -->
-                <div id="form-strength" class="fade-in space-y-7">
+                <div id="form-strength" class="fade-in space-y-8">
                     
                     <!-- 1. 写真 -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">1</span>
-                            写真
+                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">1</span>
+                            Photo
                         </h2>
                         <label class="block active-scale">
                             <input type="file" accept="image/*" class="hidden" onchange="handlePhotoSelect(this, 'strength-photo-label')">
-                            <div id="strength-photo-label" class="border-2 border-dashed border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 rounded-[1.2rem] py-5 text-center flex flex-col items-center justify-center shadow-sm">
-                                <i class="ph-fill ph-camera text-3xl text-gray-400 dark:text-gray-500 mb-2"></i>
-                                <span class="text-[14px] font-bold text-gray-600 dark:text-gray-300">現場の写真を撮る・選ぶ</span>
+                            <div id="strength-photo-label" class="border border-dashed border-gray-300 dark:border-gray-600 bg-white/40 dark:bg-brand-surface/40 rounded-2xl py-6 text-center flex flex-col items-center justify-center shadow-sm transition-colors hover:bg-white dark:hover:bg-brand-surface">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
+                                    <i class="ph-bold ph-camera text-2xl text-gray-400 dark:text-brand-gold"></i>
+                                </div>
+                                <span class="text-[14px] font-bold text-gray-700 dark:text-gray-200">写真をアップロード</span>
                             </div>
                         </label>
-                        <p class="text-[11px] font-bold text-gray-400 dark:text-gray-500 mt-2 text-center">※選んだ写真は、コピー後に各SNSアプリで添付してください</p>
                     </div>
 
                     <!-- 2. 発信選択 (SNS) -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">2</span>
-                            発信先（SNS）
+                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">2</span>
+                            Platform
                         </h2>
-                        <div class="flex bg-gray-200/50 dark:bg-gray-800 p-1.5 rounded-[1.2rem] shadow-inner">
-                            <label class="flex-1 cursor-pointer active-scale relative text-center">
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="cursor-pointer active-scale relative text-center">
                                 <input type="radio" name="strength-sns" value="x" class="hidden peer">
-                                <div class="py-3 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                    <i class="ph-fill ph-twitter-logo text-xl text-black dark:text-white"></i> X
+                                <div class="py-3 border border-gray-200 dark:border-gray-700 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 bg-white dark:bg-brand-surface transition-all peer-checked:border-brand-main dark:peer-checked:border-brand-gold peer-checked:text-brand-main dark:peer-checked:text-brand-gold peer-checked:shadow-sm flex flex-col items-center justify-center gap-1">
+                                    <i class="ph-fill ph-twitter-logo text-xl"></i> <span>X</span>
                                 </div>
                             </label>
-                            <label class="flex-1 cursor-pointer active-scale relative text-center">
+                            <label class="cursor-pointer active-scale relative text-center">
                                 <input type="radio" name="strength-sns" value="instagram" class="hidden peer">
-                                <div class="py-3 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                    <i class="ph-fill ph-instagram-logo text-xl text-pink-500"></i> IG
+                                <div class="py-3 border border-gray-200 dark:border-gray-700 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 bg-white dark:bg-brand-surface transition-all peer-checked:border-brand-main dark:peer-checked:border-brand-gold peer-checked:text-brand-main dark:peer-checked:text-brand-gold peer-checked:shadow-sm flex flex-col items-center justify-center gap-1">
+                                    <i class="ph-fill ph-instagram-logo text-xl"></i> <span>Instagram</span>
                                 </div>
                             </label>
-                            <label class="flex-1 cursor-pointer active-scale relative text-center">
+                            <label class="cursor-pointer active-scale relative text-center">
                                 <input type="radio" name="strength-sns" value="facebook" class="hidden peer">
-                                <div class="py-3 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                    <i class="ph-fill ph-facebook-logo text-xl text-blue-600 dark:text-blue-400"></i> FB
+                                <div class="py-3 border border-gray-200 dark:border-gray-700 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 bg-white dark:bg-brand-surface transition-all peer-checked:border-brand-main dark:peer-checked:border-brand-gold peer-checked:text-brand-main dark:peer-checked:text-brand-gold peer-checked:shadow-sm flex flex-col items-center justify-center gap-1">
+                                    <i class="ph-fill ph-facebook-logo text-xl"></i> <span>Facebook</span>
                                 </div>
                             </label>
                         </div>
@@ -171,161 +189,168 @@
 
                     <!-- 3. 今日の素材 -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">3</span>
-                            今日の素材・作業
-                        </h2>
-                        <input type="text" id="strength-input1" placeholder="例：PPS部品の仕上げ" class="w-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-[1.2rem] px-4 py-3.5 text-[15px] font-bold text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/20 transition-all shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold tracking-widest flex items-center gap-2 uppercase font-en">
+                                <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">3</span>
+                                Topic
+                            </h2>
+                            <div class="relative active-scale">
+                                <select onchange="document.getElementById('strength-input1').value = this.value; this.selectedIndex = 0;" class="appearance-none bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-brand-gold text-[11px] font-bold py-1.5 pl-3 pr-7 rounded-md focus:outline-none cursor-pointer border border-gray-200 dark:border-gray-700">
+                                    <option value="" disabled selected>履歴から選ぶ</option>
+                                    <option value="PPS部品の仕上げ">PPS部品の仕上げ</option>
+                                    <option value="ガラス入りPPSの精密成形">ガラス入りPPSの精密成形</option>
+                                    <option value="医療機器向け部品の検査・出荷">医療機器向け部品の検査・出荷</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 dark:text-brand-gold">
+                                    <i class="ph-bold ph-caret-down text-[10px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" id="strength-input1" placeholder="例：PPS部品の仕上げ（自由に修正可）" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 text-[15px] font-medium text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main dark:focus:border-brand-gold focus:ring-1 focus:ring-brand-main dark:focus:ring-brand-gold transition-all shadow-sm">
                     </div>
 
                     <!-- 4. アピール -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">4</span>
-                            アピールしたい特徴（複数可）
+                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">4</span>
+                            Features
                         </h2>
-                        <div class="grid grid-cols-2 gap-2.5">
+                        <div class="grid grid-cols-2 gap-2">
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="耐熱性" class="hidden peer strength-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-thermometer text-2xl"></i>耐熱性
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-thermometer text-xl"></i>耐熱性
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="精密加工" class="hidden peer strength-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-crosshair text-2xl"></i>精密加工
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-crosshair text-xl"></i>精密加工
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="小ロット対応" class="hidden peer strength-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-package text-2xl"></i>小ロット対応
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-package text-xl"></i>小ロット対応
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="耐薬品性" class="hidden peer strength-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-flask text-2xl"></i>耐薬品性
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-flask text-xl"></i>耐薬品性
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale col-span-2">
                                 <input type="checkbox" value="高強度" class="hidden peer strength-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-shield-check text-2xl"></i>高強度
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-shield-check text-xl"></i>高強度
                                 </div>
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <!-- 【タブ2】 採用発信フォーム -->
-                <div id="form-recruit" class="fade-in space-y-7 hidden-view">
-                    
-                    <!-- 1. 写真 -->
+                <!-- 【タブ2】 採用発信フォーム (同じスタイルを適用) -->
+                <div id="form-recruit" class="fade-in space-y-8 hidden-view">
+                    <!-- 中身は強み発信と同様のプレミアムスタイルに省略せず記載します -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">1</span>
-                            写真
+                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">1</span>
+                            Photo
                         </h2>
                         <label class="block active-scale">
                             <input type="file" accept="image/*" class="hidden" onchange="handlePhotoSelect(this, 'recruit-photo-label')">
-                            <div id="recruit-photo-label" class="border-2 border-dashed border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 rounded-[1.2rem] py-5 text-center flex flex-col items-center justify-center shadow-sm">
-                                <i class="ph-fill ph-camera text-3xl text-gray-400 dark:text-gray-500 mb-2"></i>
-                                <span class="text-[14px] font-bold text-gray-600 dark:text-gray-300">現場の写真を撮る・選ぶ</span>
+                            <div id="recruit-photo-label" class="border border-dashed border-gray-300 dark:border-gray-600 bg-white/40 dark:bg-brand-surface/40 rounded-2xl py-6 text-center flex flex-col items-center justify-center shadow-sm transition-colors hover:bg-white dark:hover:bg-brand-surface">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
+                                    <i class="ph-bold ph-camera text-2xl text-gray-400 dark:text-brand-gold"></i>
+                                </div>
+                                <span class="text-[14px] font-bold text-gray-700 dark:text-gray-200">現場の写真を撮る・選ぶ</span>
                             </div>
                         </label>
-                        <p class="text-[11px] font-bold text-gray-400 dark:text-gray-500 mt-2 text-center">※選んだ写真は、コピー後に各SNSアプリで添付してください</p>
                     </div>
 
-                    <!-- 2. 発信選択 -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">2</span>
-                            発信先（SNS）
+                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">2</span>
+                            Platform
                         </h2>
-                        <div class="flex bg-gray-200/50 dark:bg-gray-800 p-1.5 rounded-[1.2rem] shadow-inner">
-                            <label class="flex-1 cursor-pointer active-scale relative text-center">
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="cursor-pointer active-scale relative text-center">
                                 <input type="radio" name="recruit-sns" value="x" class="hidden peer">
-                                <div class="py-3 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                    <i class="ph-fill ph-twitter-logo text-xl text-black dark:text-white"></i> X
+                                <div class="py-3 border border-gray-200 dark:border-gray-700 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 bg-white dark:bg-brand-surface transition-all peer-checked:border-brand-main dark:peer-checked:border-brand-gold peer-checked:text-brand-main dark:peer-checked:text-brand-gold peer-checked:shadow-sm flex flex-col items-center justify-center gap-1">
+                                    <i class="ph-fill ph-twitter-logo text-xl"></i> X
                                 </div>
                             </label>
-                            <label class="flex-1 cursor-pointer active-scale relative text-center">
+                            <label class="cursor-pointer active-scale relative text-center">
                                 <input type="radio" name="recruit-sns" value="instagram" class="hidden peer">
-                                <div class="py-3 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                    <i class="ph-fill ph-instagram-logo text-xl text-pink-500"></i> IG
+                                <div class="py-3 border border-gray-200 dark:border-gray-700 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 bg-white dark:bg-brand-surface transition-all peer-checked:border-brand-main dark:peer-checked:border-brand-gold peer-checked:text-brand-main dark:peer-checked:text-brand-gold peer-checked:shadow-sm flex flex-col items-center justify-center gap-1">
+                                    <i class="ph-fill ph-instagram-logo text-xl"></i> IG
                                 </div>
                             </label>
-                            <label class="flex-1 cursor-pointer active-scale relative text-center">
+                            <label class="cursor-pointer active-scale relative text-center">
                                 <input type="radio" name="recruit-sns" value="facebook" class="hidden peer">
-                                <div class="py-3 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                    <i class="ph-fill ph-facebook-logo text-xl text-blue-600 dark:text-blue-400"></i> FB
+                                <div class="py-3 border border-gray-200 dark:border-gray-700 text-[13px] font-bold rounded-xl text-gray-500 dark:text-gray-400 bg-white dark:bg-brand-surface transition-all peer-checked:border-brand-main dark:peer-checked:border-brand-gold peer-checked:text-brand-main dark:peer-checked:text-brand-gold peer-checked:shadow-sm flex flex-col items-center justify-center gap-1">
+                                    <i class="ph-fill ph-facebook-logo text-xl"></i> FB
                                 </div>
                             </label>
                         </div>
                     </div>
 
-                    <!-- 3. 今日の素材 (仕事内容) -->
                     <div>
-                        <div class="flex flex-col mb-2.5 gap-2">
-                            <div class="flex items-center justify-between">
-                                <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 tracking-wider flex items-center gap-1.5">
-                                    <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">3</span>
-                                    募集する仕事内容
-                                </h2>
-                                <!-- テンプレート選択プルダウン -->
-                                <div class="relative active-scale">
-                                    <select onchange="document.getElementById('recruit-input1').value = this.value; this.selectedIndex = 0;" class="appearance-none bg-brand-main text-white text-[11px] font-bold py-1.5 pl-3 pr-6 rounded-full focus:outline-none shadow-sm cursor-pointer">
-                                        <option value="" disabled selected>▼ リストから選ぶ</option>
-                                        <option value="成形機オペレーター">成形機オペレーター</option>
-                                        <option value="金型のメンテナンス・段取り">金型のメンテナンス・段取り</option>
-                                        <option value="製品の検査・仕上げ">製品の検査・仕上げ</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-white">
-                                        <i class="ph-bold ph-caret-down text-[10px]"></i>
-                                    </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold tracking-widest flex items-center gap-2 uppercase font-en">
+                                <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">3</span>
+                                Job Role
+                            </h2>
+                            <div class="relative active-scale">
+                                <select onchange="document.getElementById('recruit-input1').value = this.value; this.selectedIndex = 0;" class="appearance-none bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-brand-gold text-[11px] font-bold py-1.5 pl-3 pr-7 rounded-md focus:outline-none cursor-pointer border border-gray-200 dark:border-gray-700">
+                                    <option value="" disabled selected>履歴から選ぶ</option>
+                                    <option value="成形機オペレーター">成形機オペレーター</option>
+                                    <option value="金型のメンテナンス・段取り">金型のメンテナンス・段取り</option>
+                                    <option value="製品の検査・仕上げ">製品の検査・仕上げ</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500 dark:text-brand-gold">
+                                    <i class="ph-bold ph-caret-down text-[10px]"></i>
                                 </div>
                             </div>
                         </div>
-                        <input type="text" id="recruit-input1" placeholder="例：成形機オペレーター（自由に修正できます）" class="w-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-[1.2rem] px-4 py-3.5 text-[15px] font-bold text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/20 transition-all shadow-sm">
+                        <input type="text" id="recruit-input1" placeholder="例：成形機オペレーター" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 text-[15px] font-medium text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main dark:focus:border-brand-gold focus:ring-1 focus:ring-brand-main dark:focus:ring-brand-gold transition-all shadow-sm">
                     </div>
 
-                    <!-- 4. アピール -->
                     <div>
-                        <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-2.5 tracking-wider flex items-center gap-1.5">
-                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 w-5 h-5 rounded-full flex items-center justify-center text-[11px]">4</span>
-                            こんな人に来てほしい（複数可）
+                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">4</span>
+                            Target
                         </h2>
-                        <div class="grid grid-cols-2 gap-2.5">
+                        <div class="grid grid-cols-2 gap-2">
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="手を動かすのが好き" class="hidden peer recruit-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-hand-palm text-2xl"></i>手を動かすのが好き
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-hand-palm text-xl"></i>手を動かすのが好き
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="ものづくりが好き" class="hidden peer recruit-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-wrench text-2xl"></i>ものづくりが好き
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-wrench text-xl"></i>ものづくりが好き
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="丁寧な仕事をしたい" class="hidden peer recruit-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-magnifying-glass text-2xl"></i>丁寧な仕事をしたい
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-magnifying-glass text-xl"></i>丁寧な仕事を
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale">
                                 <input type="checkbox" value="未経験でも挑戦したい" class="hidden peer recruit-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-star text-2xl"></i>未経験でも挑戦したい
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[12px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-star text-xl"></i>未経験でも挑戦
                                 </div>
                             </label>
                             <label class="cursor-pointer block active-scale col-span-2">
                                 <input type="checkbox" value="手に職をつけたい" class="hidden peer recruit-feature">
-                                <div class="border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-[1.2rem] py-3.5 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-1.5 peer-checked:bg-brand-main peer-checked:text-white peer-checked:border-brand-main peer-checked:shadow-floating">
-                                    <i class="ph-bold ph-medal text-2xl"></i>手に職をつけたい
+                                <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-brand-surface rounded-xl py-3 px-2 text-center transition-all text-[13px] font-bold text-gray-500 dark:text-gray-400 shadow-sm flex flex-col items-center justify-center gap-2 peer-checked:bg-brand-main dark:peer-checked:bg-gray-800 peer-checked:text-white dark:peer-checked:text-brand-gold peer-checked:border-brand-main dark:peer-checked:border-brand-gold">
+                                    <i class="ph-fill ph-medal text-xl"></i>手に職をつけたい
                                 </div>
                             </label>
                         </div>
@@ -333,34 +358,31 @@
                 </div>
 
                 <!-- エラーメッセージ -->
-                <div id="error-msg" class="text-rose-500 font-bold text-center mt-6 h-5 text-sm tracking-wide"></div>
+                <div id="error-msg" class="text-rose-500 font-bold text-center mt-6 h-5 text-[13px] tracking-wide"></div>
 
-                <!-- 作成ボタン -->
-                <div class="mt-3 w-full pb-4">
-                    <button id="generate-btn" class="active-scale w-full bg-gradient-to-r from-brand-main via-blue-900 to-brand-main text-white py-4 rounded-[1.2rem] font-bold flex items-center justify-center shadow-premium relative overflow-hidden">
-                        <i class="ph-fill ph-magic-wand text-2xl mr-2 relative z-10 text-brand-light"></i>
-                        <span class="relative z-10 tracking-wide text-[16px]">文章を作成する</span>
+                <!-- 作成ボタン (プレミアムデザイン) -->
+                <div class="mt-4 w-full pb-6">
+                    <button id="generate-btn" class="active-scale w-full bg-brand-main dark:bg-gradient-to-r dark:from-[#C5A059] dark:to-[#E8D5A5] text-white dark:text-gray-900 py-4 rounded-xl font-bold flex items-center justify-center shadow-elegant dark:shadow-gold-glow relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+                        <i class="ph-fill ph-sparkle text-xl mr-2 relative z-10 text-brand-gold dark:text-gray-900"></i>
+                        <span class="relative z-10 tracking-widest text-[15px] font-sans">文章を自動生成</span>
                     </button>
                 </div>
 
                 <!-- 結果表示エリア -->
-                <div id="result-area" class="fade-in premium-card bg-white dark:bg-gray-800 rounded-[2rem] p-5 shadow-premium border border-gray-100 dark:border-gray-700 mt-2 hidden-view relative overflow-hidden mb-6">
-                    <div class="absolute right-0 top-0 w-32 h-32 bg-green-100/50 dark:bg-green-900/30 rounded-full blur-2xl -z-10"></div>
-                    
-                    <h2 class="text-lg font-extrabold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2 tracking-tight">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white shadow-sm">
-                            <i class="ph-bold ph-check text-sm"></i>
-                        </div>
-                        完成しました！
+                <div id="result-area" class="fade-in bg-white dark:bg-brand-surface rounded-[1.5rem] p-5 shadow-elegant border border-gray-100 dark:border-gray-700 mt-2 hidden-view relative overflow-hidden mb-8">
+                    <h2 class="text-[14px] font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2 tracking-widest font-en uppercase">
+                        <i class="ph-fill ph-check-circle text-brand-gold text-xl"></i>
+                        Ready to Post
                     </h2>
                     
-                    <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-[1.2rem] p-4 mb-5 shadow-inner">
-                        <textarea id="result-text" class="w-full text-gray-800 dark:text-gray-200 text-[14px] resize-none focus:outline-none bg-transparent leading-relaxed font-medium min-h-[220px]" readonly></textarea>
+                    <div class="bg-ios-bg dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 mb-5 shadow-inner">
+                        <textarea id="result-text" class="w-full text-gray-800 dark:text-gray-300 text-[14px] resize-none focus:outline-none bg-transparent leading-relaxed font-medium min-h-[220px]" readonly></textarea>
                     </div>
                     
-                    <button id="copy-btn" class="active-scale w-full py-4 rounded-[1.2rem] font-bold flex items-center justify-center shadow-floating bg-gradient-to-r from-brand-main to-blue-900 text-white transition-all">
-                        <i class="ph-bold ph-copy text-xl mr-2 relative z-10" id="copy-icon"></i>
-                        <span id="copy-text" class="relative z-10 tracking-wide text-[15px]">テキストをコピーする</span>
+                    <button id="copy-btn" class="active-scale w-full py-3.5 rounded-lg font-bold flex items-center justify-center border-2 border-brand-main dark:border-brand-gold text-brand-main dark:text-brand-gold hover:bg-brand-main hover:text-white dark:hover:bg-brand-gold dark:hover:text-gray-900 transition-all">
+                        <i class="ph-bold ph-copy text-lg mr-2" id="copy-icon"></i>
+                        <span id="copy-text" class="tracking-widest text-[14px]">テキストをコピー</span>
                     </button>
                 </div>
 
@@ -369,47 +391,41 @@
 
         <!-- ================= 設定画面 ================= -->
         <div id="view-settings" class="hidden-view absolute inset-0 z-50 bg-ios-bg dark:bg-gray-900 flex flex-col fade-in">
-            <!-- header -->
-            <header class="glass-header px-5 py-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700 sticky top-0">
-                <button onclick="closeSettings()" class="active-scale flex items-center text-brand-main dark:text-blue-400 font-bold">
-                    <i class="ph-bold ph-caret-left text-xl mr-1"></i>戻る
+            <header class="glass-header px-5 py-4 flex items-center justify-between sticky top-0">
+                <button onclick="closeSettings()" class="active-scale flex items-center text-gray-500 dark:text-gray-400 hover:text-brand-main dark:hover:text-brand-gold font-bold transition-colors">
+                    <i class="ph-bold ph-x text-xl"></i>
                 </button>
-                <h1 class="font-extrabold text-[17px] text-gray-900 dark:text-white">設定</h1>
-                <div class="w-16"></div> <!-- バランス用 -->
+                <h1 class="font-bold text-[15px] tracking-widest text-gray-900 dark:text-white font-en uppercase">Settings</h1>
+                <div class="w-8"></div>
             </header>
             
             <div class="p-6 space-y-8 flex-1 overflow-y-auto">
-                <!-- テーマ設定 -->
                 <div>
-                    <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-3 tracking-wider flex items-center gap-2"><i class="ph-fill ph-palette text-lg"></i>配色テーマ</h2>
-                    <div class="flex bg-gray-200/50 dark:bg-gray-800 p-1.5 rounded-[1.2rem] shadow-inner">
+                    <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-palette text-lg"></i>Theme</h2>
+                    <div class="flex bg-white dark:bg-brand-surface p-1 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
                         <label class="flex-1 cursor-pointer active-scale relative text-center">
                             <input type="radio" name="setting-theme" value="light" class="hidden peer" onchange="changeTheme('light')" checked>
-                            <div class="py-3 text-[14px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                <i class="ph-fill ph-sun text-xl text-orange-500"></i> ライト
+                            <div class="py-2.5 text-[13px] font-bold rounded-lg text-gray-400 transition-all peer-checked:text-gray-900 peer-checked:bg-gray-100 dark:peer-checked:bg-gray-800 flex items-center justify-center gap-1.5">
+                                <i class="ph-fill ph-sun"></i> Light
                             </div>
                         </label>
                         <label class="flex-1 cursor-pointer active-scale relative text-center">
                             <input type="radio" name="setting-theme" value="dark" class="hidden peer" onchange="changeTheme('dark')">
-                            <div class="py-3 text-[14px] font-bold rounded-xl text-gray-500 dark:text-gray-400 transition-all peer-checked:text-gray-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:shadow-sm flex items-center justify-center gap-1.5">
-                                <i class="ph-fill ph-moon text-xl text-blue-500"></i> ダーク
+                            <div class="py-2.5 text-[13px] font-bold rounded-lg text-gray-400 transition-all peer-checked:text-brand-gold peer-checked:bg-gray-100 dark:peer-checked:bg-gray-800 flex items-center justify-center gap-1.5">
+                                <i class="ph-fill ph-moon"></i> Dark
                             </div>
                         </label>
                     </div>
                 </div>
 
-                <!-- URL設定 -->
                 <div>
-                    <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-3 tracking-wider flex items-center gap-2"><i class="ph-fill ph-link text-lg"></i>サイトURL</h2>
-                    <input type="url" id="setting-url" class="w-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-[1.2rem] px-4 py-3.5 text-[15px] font-bold text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/20 transition-all shadow-sm">
-                    <p class="text-[11px] font-bold text-gray-400 mt-2 ml-1">投稿文の末尾に挿入されます。</p>
+                    <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-link text-lg"></i>Website URL</h2>
+                    <input type="url" id="setting-url" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 text-[14px] font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:border-brand-gold transition-all shadow-sm">
                 </div>
 
-                <!-- メールアドレス設定 -->
                 <div>
-                    <h2 class="text-[13px] font-extrabold text-gray-500 dark:text-gray-400 mb-3 tracking-wider flex items-center gap-2"><i class="ph-fill ph-envelope-simple text-lg"></i>連絡先メールアドレス</h2>
-                    <input type="email" id="setting-email" class="w-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-[1.2rem] px-4 py-3.5 text-[15px] font-bold text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main focus:ring-2 focus:ring-brand-main/20 transition-all shadow-sm">
-                    <p class="text-[11px] font-bold text-gray-400 mt-2 ml-1">投稿文の末尾に挿入されます。</p>
+                    <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en"><i class="ph-fill ph-envelope-simple text-lg"></i>Contact Email</h2>
+                    <input type="email" id="setting-email" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 text-[14px] font-medium text-gray-800 dark:text-gray-200 focus:outline-none focus:border-brand-gold transition-all shadow-sm">
                 </div>
             </div>
         </div>
@@ -418,32 +434,29 @@
 
     <!-- ================= JavaScript ロジック ================= -->
     <script>
-        // 画像選択時のプレビュー表示UI変更
         function handlePhotoSelect(input, labelId) {
             const label = document.getElementById(labelId);
             if (input.files && input.files[0]) {
                 label.innerHTML = `
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center mb-2">
-                        <i class="ph-bold ph-check text-2xl text-green-600 dark:text-green-400"></i>
+                    <div class="w-12 h-12 bg-gray-900 dark:bg-brand-gold rounded-full flex items-center justify-center mb-3 shadow-md">
+                        <i class="ph-bold ph-check text-xl text-white dark:text-gray-900"></i>
                     </div>
-                    <span class="text-[14px] font-bold text-gray-900 dark:text-gray-100">写真が選択されました</span>
-                    <span class="text-[11px] text-gray-500 mt-1">${input.files[0].name}</span>
+                    <span class="text-[14px] font-bold text-gray-900 dark:text-brand-gold tracking-wide">Ready</span>
+                    <span class="text-[10px] text-gray-400 mt-1 font-en truncate max-w-[80%]">${input.files[0].name}</span>
                 `;
-                label.classList.replace('bg-white/50', 'bg-green-50/50');
-                label.classList.replace('dark:bg-gray-800/50', 'dark:bg-green-900/20');
-                label.classList.replace('border-gray-300', 'border-green-300');
-                label.classList.replace('dark:border-gray-600', 'dark:border-green-700');
+                label.classList.replace('bg-white/40', 'bg-white');
+                label.classList.replace('dark:bg-brand-surface/40', 'dark:bg-brand-surface');
+                label.classList.replace('border-gray-300', 'border-gray-900');
+                label.classList.replace('dark:border-gray-600', 'dark:border-brand-gold');
             }
         }
 
-        // --- アプリ設定の管理 ---
         let appSettings = {
             theme: 'light',
             url: 'https://moritaseisakusyo.co.jp/',
             email: 'k_morita@moritaseisakusyo.co.jp'
         };
 
-        // 設定画面を開く
         function openSettings() {
             document.getElementById('setting-url').value = appSettings.url;
             document.getElementById('setting-email').value = appSettings.email;
@@ -451,14 +464,12 @@
             document.getElementById('view-settings').classList.remove('hidden-view');
         }
 
-        // 設定画面を閉じて保存
         function closeSettings() {
             appSettings.url = document.getElementById('setting-url').value.trim();
             appSettings.email = document.getElementById('setting-email').value.trim();
             document.getElementById('view-settings').classList.add('hidden-view');
         }
 
-        // テーマ切り替え
         function changeTheme(theme) {
             appSettings.theme = theme;
             if (theme === 'dark') {
@@ -470,7 +481,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- 挨拶メッセージ機能 ---
             function updateGreeting() {
                 const hour = new Date().getHours();
                 const greetingEl = document.getElementById('greeting-message');
@@ -478,23 +488,22 @@
                 
                 if (hour >= 5 && hour < 11) {
                     icon = "☀️";
-                    message = "森田社長、おはようございます！<br>今日も一日、笑顔で楽しくモノづくりしていきましょう！";
+                    message = "おはようございます！<br>その妥協なき技術が、日本のものづくりを支えています。今日も一番の品質を生み出していきましょう。";
                 } else if (hour >= 11 && hour < 17) {
                     icon = "☕️";
-                    message = "森田社長、お疲れ様です！<br>午後も焦らずマイペースに、笑顔で乗り切りましょう！";
+                    message = "お疲れ様です。<br>図面以上のモノを作り出すその技術力。午後も社長ならではの「こだわり」で現場を引っ張ってください。";
                 } else if (hour >= 17 && hour < 24) {
-                    icon = "🍺";
-                    message = "森田社長、今日もお疲れ様です！<br>頑張った分、美味しいものを食べてゆっくり休んでくださいね！";
-                } else {
                     icon = "🌙";
-                    message = "森田社長、夜遅くまでお疲れ様です。<br>あまり無理せず、明日の笑顔のために身体を休めてくださいね！";
+                    message = "今日もお疲れ様です。<br>生み出した一つ一つの部品に、社長の技術と魂が宿っています。本日の確かな仕事に乾杯。";
+                } else {
+                    icon = "🍷";
+                    message = "夜遅くまでお疲れ様です。<br>納得いくまで追求する職人魂は素晴らしいですが、代わりのきかないお身体です。明日のために休んでくださいね。";
                 }
                 
-                greetingEl.innerHTML = `<span class="text-lg mt-0.5">${icon}</span> <span>${message}</span>`;
+                greetingEl.innerHTML = `<span class="text-xl mt-0.5 text-brand-gold">${icon}</span> <span>${message}</span>`;
             }
             updateGreeting();
 
-            // --- データ定義 ---
             const templates = {
                 strength: {
                     x: [
@@ -553,7 +562,6 @@
                 }
             };
 
-            // --- UI 制御 ---
             let currentTab = 'strength'; 
             
             const tabStrengthBtn = document.getElementById('tab-strength');
@@ -573,26 +581,22 @@
 
                 if (tab === 'strength') {
                     tabStrengthBtn.classList.replace('text-gray-500', 'text-gray-900');
-                    tabStrengthBtn.classList.replace('dark:text-gray-400', 'dark:text-gray-100');
-                    tabStrengthBtn.classList.remove('hover:text-gray-700', 'dark:hover:text-gray-200');
+                    tabStrengthBtn.classList.replace('dark:text-gray-400', 'dark:text-white');
                     tabBgStrength.classList.remove('hidden-view');
                     
                     tabRecruitBtn.classList.replace('text-gray-900', 'text-gray-500');
-                    tabRecruitBtn.classList.replace('dark:text-gray-100', 'dark:text-gray-400');
-                    tabRecruitBtn.classList.add('hover:text-gray-700', 'dark:hover:text-gray-200');
+                    tabRecruitBtn.classList.replace('dark:text-white', 'dark:text-gray-400');
                     tabBgRecruit.classList.add('hidden-view');
                     
                     formStrength.classList.remove('hidden-view');
                     formRecruit.classList.add('hidden-view');
                 } else {
                     tabRecruitBtn.classList.replace('text-gray-500', 'text-gray-900');
-                    tabRecruitBtn.classList.replace('dark:text-gray-400', 'dark:text-gray-100');
-                    tabRecruitBtn.classList.remove('hover:text-gray-700', 'dark:hover:text-gray-200');
+                    tabRecruitBtn.classList.replace('dark:text-gray-400', 'dark:text-white');
                     tabBgRecruit.classList.remove('hidden-view');
                     
                     tabStrengthBtn.classList.replace('text-gray-900', 'text-gray-500');
-                    tabStrengthBtn.classList.replace('dark:text-gray-100', 'dark:text-gray-400');
-                    tabStrengthBtn.classList.add('hover:text-gray-700', 'dark:hover:text-gray-200');
+                    tabStrengthBtn.classList.replace('dark:text-white', 'dark:text-gray-400');
                     tabBgStrength.classList.add('hidden-view');
                     
                     formRecruit.classList.remove('hidden-view');
@@ -603,7 +607,6 @@
             tabStrengthBtn.addEventListener('click', () => switchTab('strength'));
             tabRecruitBtn.addEventListener('click', () => switchTab('recruit'));
 
-            // 生成ボタンの処理
             document.getElementById('generate-btn').addEventListener('click', () => {
                 errorMsgArea.textContent = '';
                 
@@ -619,17 +622,16 @@
                     text2Array = Array.from(document.querySelectorAll('.recruit-feature:checked')).map(cb => cb.value);
                 }
                 
-                // バリデーション
                 if (!sns) {
-                    errorMsgArea.textContent = 'Step2：発信先（X, Instagram, Facebook）を選択してください。';
+                    errorMsgArea.textContent = 'Platform (SNS) を選択してください。';
                     return;
                 }
                 if (!text1) {
-                    errorMsgArea.textContent = 'Step3：「作業・素材」または「仕事内容」を入力してください。';
+                    errorMsgArea.textContent = 'Topic (作業内容) を入力してください。';
                     return;
                 }
                 if (text2Array.length === 0) {
-                    errorMsgArea.textContent = 'Step4：アピール項目を1つ以上選択してください。';
+                    errorMsgArea.textContent = 'Features (特徴) を1つ以上選択してください。';
                     return;
                 }
                 
@@ -639,7 +641,6 @@
                 const templateList = templates[currentTab][sns];
                 let selectedTemplate = templateList[Math.floor(Math.random() * templateList.length)];
                 
-                // ハッシュタグ生成
                 if (currentTab === 'strength') {
                     hashtags = [...hashTagsMap.strength.fixed];
                     text2Array.forEach(feature => {
@@ -660,14 +661,12 @@
                         .replaceAll('{こんな人へ}', text2);
                 }
 
-                // 連絡先の追加（設定画面の値を読み込む）
                 const activeUrl = appSettings.url || 'https://moritaseisakusyo.co.jp/';
                 const activeEmail = appSettings.email || 'k_morita@moritaseisakusyo.co.jp';
                 const contactText = `\n\n▼詳細・お問い合わせはこちら\n🌐 ${activeUrl}\n✉️ ${activeEmail}\n\n`;
 
                 selectedTemplate = selectedTemplate.replaceAll('{ハッシュタグ}', contactText + hashtags.join(' '));
                 
-                // 結果表示
                 const resultText = document.getElementById('result-text');
                 resultText.value = selectedTemplate;
                 resultArea.classList.remove('hidden-view');
@@ -677,7 +676,6 @@
                 }, 100);
             });
 
-            // コピーボタンの処理
             document.getElementById('copy-btn').addEventListener('click', () => {
                 const textarea = document.getElementById('result-text');
                 
@@ -690,16 +688,15 @@
                 const copyText = document.getElementById('copy-text');
                 const copyIcon = document.getElementById('copy-icon');
                 
-                copyBtn.classList.replace('from-brand-main', 'from-green-500');
-                copyBtn.classList.replace('to-blue-900', 'to-emerald-600');
-                copyText.textContent = 'コピーしました！';
-                copyIcon.className = 'ph-bold ph-check text-xl mr-2 relative z-10';
+                const origClasses = copyBtn.className;
+                copyBtn.className = 'active-scale w-full py-3.5 rounded-lg font-bold flex items-center justify-center border-2 border-green-600 bg-green-600 text-white transition-all';
+                copyText.textContent = 'コピー完了';
+                copyIcon.className = 'ph-bold ph-check text-lg mr-2';
                 
                 setTimeout(() => {
-                    copyBtn.classList.replace('from-green-500', 'from-brand-main');
-                    copyBtn.classList.replace('to-emerald-600', 'to-blue-900');
-                    copyText.textContent = 'テキストをコピーする';
-                    copyIcon.className = 'ph-bold ph-copy text-xl mr-2 relative z-10';
+                    copyBtn.className = origClasses;
+                    copyText.textContent = 'テキストをコピー';
+                    copyIcon.className = 'ph-bold ph-copy text-lg mr-2';
                 }, 2000);
             });
 
