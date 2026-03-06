@@ -75,7 +75,7 @@
             border-radius: 50%; z-index: 0; pointer-events: none;
         }
         .bg-orb-2 {
-            position: absolute top: 40%; right: -30%; width: 350px; height: 350px;
+            position: absolute; top: 40%; right: -30%; width: 350px; height: 350px;
             background: radial-gradient(circle, rgba(15, 23, 42, 0.05) 0%, rgba(255,255,255,0) 70%);
             border-radius: 50%; z-index: 0; pointer-events: none;
         }
@@ -142,27 +142,10 @@
                 <!-- 【タブ1】 強み発信フォーム -->
                 <div id="form-strength" class="fade-in space-y-8">
                     
-                    <!-- 1. 写真 -->
+                    <!-- 1. 発信選択 (SNS) -->
                     <div>
                         <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
                             <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">1</span>
-                            Photo
-                        </h2>
-                        <label class="block active-scale">
-                            <input type="file" accept="image/*" class="hidden" onchange="handlePhotoSelect(this, 'strength-photo-label')">
-                            <div id="strength-photo-label" class="border border-dashed border-gray-300 dark:border-gray-600 bg-white/40 dark:bg-brand-surface/40 rounded-2xl py-6 text-center flex flex-col items-center justify-center shadow-sm transition-colors hover:bg-white dark:hover:bg-brand-surface">
-                                <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
-                                    <i class="ph-bold ph-camera text-2xl text-gray-400 dark:text-brand-gold"></i>
-                                </div>
-                                <span class="text-[14px] font-bold text-gray-700 dark:text-gray-200">写真をアップロード</span>
-                            </div>
-                        </label>
-                    </div>
-
-                    <!-- 2. 発信選択 (SNS) -->
-                    <div>
-                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
-                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">2</span>
                             Platform
                         </h2>
                         <div class="grid grid-cols-3 gap-2">
@@ -187,11 +170,11 @@
                         </div>
                     </div>
 
-                    <!-- 3. 今日の素材 -->
+                    <!-- 2. 今日の素材 -->
                     <div>
                         <div class="flex items-center justify-between mb-3">
                             <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold tracking-widest flex items-center gap-2 uppercase font-en">
-                                <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">3</span>
+                                <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">2</span>
                                 Topic
                             </h2>
                             <div class="relative active-scale">
@@ -209,10 +192,10 @@
                         <input type="text" id="strength-input1" placeholder="例：PPS部品の仕上げ（自由に修正可）" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 text-[15px] font-medium text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main dark:focus:border-brand-gold focus:ring-1 focus:ring-brand-main dark:focus:ring-brand-gold transition-all shadow-sm">
                     </div>
 
-                    <!-- 4. アピール -->
+                    <!-- 3. アピール -->
                     <div>
                         <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
-                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">4</span>
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">3</span>
                             Features
                         </h2>
                         <div class="grid grid-cols-2 gap-2">
@@ -252,26 +235,11 @@
 
                 <!-- 【タブ2】 採用発信フォーム (同じスタイルを適用) -->
                 <div id="form-recruit" class="fade-in space-y-8 hidden-view">
-                    <!-- 中身は強み発信と同様のプレミアムスタイルに省略せず記載します -->
+                    
+                    <!-- 1. 発信選択 -->
                     <div>
                         <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
                             <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">1</span>
-                            Photo
-                        </h2>
-                        <label class="block active-scale">
-                            <input type="file" accept="image/*" class="hidden" onchange="handlePhotoSelect(this, 'recruit-photo-label')">
-                            <div id="recruit-photo-label" class="border border-dashed border-gray-300 dark:border-gray-600 bg-white/40 dark:bg-brand-surface/40 rounded-2xl py-6 text-center flex flex-col items-center justify-center shadow-sm transition-colors hover:bg-white dark:hover:bg-brand-surface">
-                                <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
-                                    <i class="ph-bold ph-camera text-2xl text-gray-400 dark:text-brand-gold"></i>
-                                </div>
-                                <span class="text-[14px] font-bold text-gray-700 dark:text-gray-200">現場の写真を撮る・選ぶ</span>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
-                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">2</span>
                             Platform
                         </h2>
                         <div class="grid grid-cols-3 gap-2">
@@ -296,10 +264,11 @@
                         </div>
                     </div>
 
+                    <!-- 2. 今日の素材 (仕事内容) -->
                     <div>
                         <div class="flex items-center justify-between mb-3">
                             <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold tracking-widest flex items-center gap-2 uppercase font-en">
-                                <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">3</span>
+                                <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">2</span>
                                 Job Role
                             </h2>
                             <div class="relative active-scale">
@@ -317,9 +286,10 @@
                         <input type="text" id="recruit-input1" placeholder="例：成形機オペレーター" class="w-full bg-white dark:bg-brand-surface border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 text-[15px] font-medium text-gray-800 dark:text-gray-100 focus:outline-none focus:border-brand-main dark:focus:border-brand-gold focus:ring-1 focus:ring-brand-main dark:focus:ring-brand-gold transition-all shadow-sm">
                     </div>
 
+                    <!-- 3. アピール -->
                     <div>
                         <h2 class="text-[12px] font-bold text-gray-500 dark:text-brand-gold mb-3 tracking-widest flex items-center gap-2 uppercase font-en">
-                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">4</span>
+                            <span class="text-[10px] border border-gray-300 dark:border-brand-gold w-4 h-4 rounded flex items-center justify-center">3</span>
                             Target
                         </h2>
                         <div class="grid grid-cols-2 gap-2">
@@ -702,11 +672,15 @@
                         .replaceAll('{こんな人へ}', text2);
                 }
 
-                const activeUrl = appSettings.url || 'https://moritaseisakusyo.co.jp/';
-                const activeEmail = appSettings.email || 'k_morita@moritaseisakusyo.co.jp';
-                const contactText = `\n\n▼詳細・お問い合わせはこちら\n🌐 ${activeUrl}\n✉️ ${activeEmail}\n\n`;
-
-                selectedTemplate = selectedTemplate.replaceAll('{ハッシュタグ}', contactText + hashtags.join(' '));
+                let finalHashtags = '';
+                if (sns === 'x') {
+                    finalHashtags = hashtags.join(' ');
+                } else {
+                    const activeUrl = appSettings.url || 'https://moritaseisakusyo.co.jp/';
+                    const activeEmail = appSettings.email || 'k_morita@moritaseisakusyo.co.jp';
+                    finalHashtags = `\n\n▼詳細・お問い合わせはこちら\n🌐 ${activeUrl}\n✉️ ${activeEmail}\n\n` + hashtags.join(' ');
+                }
+                selectedTemplate = selectedTemplate.replaceAll('{ハッシュタグ}', finalHashtags);
                 
                 const resultText = document.getElementById('result-text');
                 resultText.value = selectedTemplate;
